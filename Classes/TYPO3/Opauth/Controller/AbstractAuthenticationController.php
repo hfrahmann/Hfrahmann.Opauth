@@ -40,10 +40,10 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      * @param string $internalcallback
      * @return string
      */
-	public function opauthAction($strategy, $internalcallback = '') {
+    public function opauthAction($strategy, $internalcallback = '') {
         $this->opauth->getOpauth()->run();
         return '';
-	}
+    }
 
     /**
      * Overridden authenticateAction method to check for an existing account with the Opauth data.
