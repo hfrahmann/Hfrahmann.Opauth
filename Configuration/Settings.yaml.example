@@ -1,0 +1,42 @@
+
+TYPO3:
+
+  Flow:
+    security:
+      authentication:
+        authenticationStrategy: oneToken
+        providers:
+
+          OpauthProvider:
+            provider: 'TYPO3\Opauth\Authentication\OpauthProvider'
+
+
+  Opauth:
+
+    # The route the AuthenticationController.
+    # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
+    AuthenticationControllerRoute:
+      '@package': 'My.Package'
+      '@subpackage': ''
+      '@controller': 'Authentication'
+      # No @action required
+
+    defaultRoleIdentifier: 'My.Package:User'
+    authenticationProviderName: 'OpauthProvider'
+
+    # The security_salt must be changed before first use
+    security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
+
+    Strategy:
+      Facebook:
+        app_id: '571xxxxxxxxxxx'
+        app_secret: '3daxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        scope: 'email,read_friendlists' # optional
+
+      Twitter:
+        key: 'T6fxxxxxxxxxxxxxxxxxx'
+        secret: 'Qqvxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+      Google:
+        client_id: '84xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com'
+        client_secret: 'I15xxxxxxxxxxxxxxxxxxx'

@@ -1,0 +1,12 @@
+
+-
+  name: 'Opauth - Strategy-Login'
+  uriPattern: 'opauth/{strategy}(/{internalcallback})'
+  defaults:
+    '@package': 'My.Package'
+    '@controller': 'Authentication'
+    '@action': 'opauth'
+    '@format': 'html'
+    'internalcallback': '' #important
+  appendExceedingArguments: true
+

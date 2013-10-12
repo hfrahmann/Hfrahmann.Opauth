@@ -1,0 +1,3 @@
+[submodule "Resources/Private/PHP/opauth"]
+	path = Resources/Private/PHP/opauth
+	url = https://github.com/opauth/opauth.git
