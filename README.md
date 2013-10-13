@@ -128,50 +128,49 @@ Example
 Here is an example of an AuthenticationController.
 
 ```php
-    //...
-    class AuthenticationController extends \TYPO3\Opauth\Controller\AbstractAuthenticationController {
-
-        /**
-         * @var \TYPO3\Flow\Security\AccountRepository
-         * @Flow\Inject
-         */
-        protected $accountRepository;
-
-        /**
-         * @param \TYPO3\Flow\Mvc\ActionRequest $originalRequest The request that was intercepted by the security framework, NULL if there was none
-         * @return string
-         */
-        protected function onAuthenticationSuccess(\TYPO3\Flow\Mvc\ActionRequest $originalRequest = NULL) {
-            $opauthResponseData = $this->opauthResponse;
-            // opauthResponseData contains the raw data of the Opauth response
-
-            if ($originalRequest !== NULL) {
-                $this->redirectToRequest($originalRequest);
-            }
-            $this->redirect('index', 'Standard', 'My.Package');
-        }
-
-        /**
-         * @param array $opauthResponseData Opauth Response with all sent data
-         * @param \TYPO3\Flow\Security\Account $opauthAccount A pre-generated account with the Opauth data
-         * @return void
-         */
-        public function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount) {
-            $this->accountRepository->add($opauthAccount);
-            $this->persistenceManager->persistAll();
-            // Add the account to TYPO3 Flow Account Repository.
-
-            $this->authenticateAction(); // authenticate again
-        }
-
-        /**
-         * This method is called when the authentication was cancelled at the provider.
-         * @return string
-         */
-        public function onOpauthAuthenticationCanceled() {
-            return 'Opauth Authentication Canceled';
-        }
+//...
+class AuthenticationController extends \TYPO3\Opauth\Controller\AbstractAuthenticationController {
+  /**
+   * @var \TYPO3\Flow\Security\AccountRepository
+   * @Flow\Inject
+   */
+  protected $accountRepository;
+  
+  /**
+   * @param \TYPO3\Flow\Mvc\ActionRequest $originalRequest The request that was intercepted by the security framework, NULL if there was none
+   * @return string
+   */
+  protected function onAuthenticationSuccess(\TYPO3\Flow\Mvc\ActionRequest $originalRequest = NULL) {
+    $opauthResponseData = $this->opauthResponse;
+    // opauthResponseData contains the raw data of the Opauth response
+  
+    if ($originalRequest !== NULL) {
+      $this->redirectToRequest($originalRequest);
     }
+    $this->redirect('index', 'Standard', 'My.Package');
+  }
+  
+  /**
+   * @param array $opauthResponseData Opauth Response with all sent data
+   * @param \TYPO3\Flow\Security\Account $opauthAccount A pre-generated account with the Opauth data
+   * @return void
+   */
+  public function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount) {
+    $this->accountRepository->add($opauthAccount);
+    $this->persistenceManager->persistAll();
+    // Add the account to TYPO3 Flow Account Repository.
+    
+    $this->authenticateAction(); // authenticate again
+  }
+
+  /**
+   * This method is called when the authentication was cancelled at the provider.
+   * @return string
+   */
+  public function onOpauthAuthenticationCanceled() {
+    return 'Opauth Authentication Canceled';
+  }
+}
 ```
 
 
