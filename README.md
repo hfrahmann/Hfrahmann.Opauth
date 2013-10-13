@@ -18,6 +18,8 @@ How to implement it
      }
  ```
 
+ DO NOT ADD THE STRATEGIES TO COMPOSER.JSON BECAUSE SOME COMPOSER CONFIGURATION WON'T WORK WITH TYPO3 FLOW.
+
  You can download any strategy from this list: https://github.com/opauth/opauth/wiki/List-of-strategies
  Then you have to copy the directory to the following path in the **TYPO3.Opauth** package: *Resources/Private/PHP/Strategy/*
 

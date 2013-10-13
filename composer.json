@@ -11,7 +11,8 @@
         "role": "Developer"
     }],
     "require": {
-        "typo3\/flow": "*"
+        "typo3/flow": "*",
+        "opauth/opauth": "@dev"
     },
     "autoload": {
         "psr-0": {

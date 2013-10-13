@@ -34,12 +34,16 @@ class Package extends BasePackage {
      * @return void
      */
     protected function loadOpauth() {
-        $opauthPath = 'opauth'  . DIRECTORY_SEPARATOR
+
+        // Load Opauth from the Libraries directory
+        $opauthPath = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+                    . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Libraries' . DIRECTORY_SEPARATOR
+                    . 'opauth'  . DIRECTORY_SEPARATOR . 'opauth'  . DIRECTORY_SEPARATOR
                     . 'lib'     . DIRECTORY_SEPARATOR
                     . 'Opauth'  . DIRECTORY_SEPARATOR
                     . 'Opauth.php';
 
-        require_once TYPO3OPAUTH_RESOURCES_PHP_PATH . $opauthPath;
+        require_once __DIR__ . DIRECTORY_SEPARATOR . $opauthPath;
     }
 
 }
