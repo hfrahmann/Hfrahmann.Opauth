@@ -13,7 +13,7 @@ How to implement it
  ```json
      {
          "require":{
-             "typo3/opauth": "*"
+             "typo3/opauth": "@dev"
          }
      }
  ```
@@ -60,16 +60,16 @@ How to implement it
  But the last part with the *strategy* and the *internalcallback* is important.
 
  ```yaml
-     -
-       name: 'Opauth - Strategy-Login'
-       uriPattern: 'opauth/{strategy}(/{internalcallback})'
-       defaults:
-         '@package': 'My.Package'
-         '@controller': 'Authentication'
-         '@action': 'opauth' #don't change
-         '@format': 'html'
-         'internalcallback': '' #important
-       appendExceedingArguments: true
+    -
+      name: 'Opauth - Strategy-Login'
+      uriPattern: 'opauth/{strategy}(/{internalcallback})'
+      defaults:
+        '@package': 'My.Package'
+        '@controller': 'Authentication'
+        '@action': 'opauth' #don't change
+        '@format': 'html'
+        'internalcallback': '' #important
+      appendExceedingArguments: true
  ```
 
 
@@ -86,39 +86,39 @@ How to implement it
  Their are structured like the original Opauth configuration.
 
  ```yaml
-     TYPO3:
+    TYPO3:
 
-       Flow:
-         security:
-           authentication:
-             authenticationStrategy: oneToken
-             providers:
+      Flow:
+        security:
+          authentication:
+            authenticationStrategy: oneToken
+            providers:
 
-               OpauthProvider:
-                 provider: 'TYPO3\Opauth\Authentication\OpauthProvider'
+              OpauthProvider:
+                provider: 'TYPO3\Opauth\Authentication\OpauthProvider'
 
 
-       Opauth:
+      Opauth:
 
-         # The route the AuthenticationController.
-         # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
-         AuthenticationControllerRoute:
-           '@package': 'My.Package'
-           '@subpackage': ''
-           '@controller': 'Authentication'
-           # No @action required
+        # The route the AuthenticationController.
+        # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
+        AuthenticationControllerRoute:
+          '@package': 'My.Package'
+          '@subpackage': ''
+          '@controller': 'Authentication'
+          # No @action required
 
-         defaultRoleIdentifier: 'My.Package:User'
-         authenticationProviderName: 'OpauthProvider' #the provider name from top
+        defaultRoleIdentifier: 'My.Package:User'
+        authenticationProviderName: 'OpauthProvider' #the provider name from top
 
-         # The security_salt must be changed before first use
-         security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
+        # The security_salt must be changed before first use
+        security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
 
-         Strategy:
-           Facebook:
-             app_id: '571xxxxxxxxxxx'
-             app_secret: '3daxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-             scope: 'email,read_friendlists' # optional
+        Strategy:
+          Facebook:
+            app_id: '571xxxxxxxxxxx'
+            app_secret: '3daxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            scope: 'email,read_friendlists' # optional
  ```
 
 
