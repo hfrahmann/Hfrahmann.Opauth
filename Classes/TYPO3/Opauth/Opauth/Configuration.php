@@ -102,7 +102,7 @@ class Configuration {
         // it must be 'post'
         $opauthSettings['callback_transport'] = 'post';
 
-        // import the security salt
+        // the security salt
         $opauthSettings['security_salt'] = $settings['security_salt'];
 
         // the strategy directory

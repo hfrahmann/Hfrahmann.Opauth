@@ -20,9 +20,29 @@ class OpauthToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToke
 
     /**
      * @var \TYPO3\Opauth\Opauth\Opauth
-     * @Flow\Inject
      */
     protected $opauth;
+
+    /**
+     * @var array
+     */
+    protected $opauthResponse;
+
+    /**
+     * @param \TYPO3\Opauth\Opauth\Opauth $opauth
+     */
+    public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
+        $this->opauth = $opauth;
+        if($opauth !== NULL && $opauth->getOpauthResponse() !== NULL)
+            $this->opauthResponse = $opauth->getOpauthResponse()->getRawData();
+    }
+
+    /**
+     * @return array Returns the response data from opauth
+     */
+    public function getOpauthResponse() {
+        return $this->opauthResponse;
+    }
 
     /**
      * Updates the authentication credentials, the authentication manager needs to authenticate this token.

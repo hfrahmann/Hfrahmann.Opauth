@@ -61,18 +61,20 @@ class OpauthAccountService {
             throw new \TYPO3\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596921);
 
         $accountIdentifier = $this->createAccountIdentifier($opauthResponse);
-        $roleIdentifier = $this->configuration->getDefaultRoleIdentifier();
         $authenticationProviderName = $this->configuration->getAuthenticationProviderName();
 
-        $roleIdentifierArray = array();
-        if(is_array($roleIdentifier))
-            $roleIdentifierArray = $roleIdentifier;
-        if(is_string($roleIdentifier))
-            $roleIdentifierArray = array($roleIdentifier);
-
         $account = $this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($accountIdentifier, $authenticationProviderName);
-        if($account === NULL)
+
+        if($account === NULL) {
+            $roleIdentifier = $this->configuration->getDefaultRoleIdentifier();
+            $roleIdentifierArray = array();
+            if(is_array($roleIdentifier))
+                $roleIdentifierArray = $roleIdentifier;
+            if(is_string($roleIdentifier))
+                $roleIdentifierArray = array($roleIdentifier);
+
             $account = $this->accountFactory->createAccountWithPassword($accountIdentifier, NULL, $roleIdentifierArray, $authenticationProviderName);
+        }
 
         return $account;
     }

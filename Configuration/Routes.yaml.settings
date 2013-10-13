@@ -5,7 +5,7 @@
   defaults:
     '@package': 'My.Package'
     '@controller': 'Authentication'
-    '@action': 'opauth'
+    '@action': 'opauth' #don't change
     '@format': 'html'
     'internalcallback': '' #important
   appendExceedingArguments: true

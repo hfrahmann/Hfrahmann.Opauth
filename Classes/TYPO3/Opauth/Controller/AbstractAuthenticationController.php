@@ -12,26 +12,51 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
 
     /**
      * @var \TYPO3\Opauth\Opauth\Opauth
-     * @Flow\Inject
      */
-    protected $opauth;
+    private $opauth;
 
     /**
      * @var \TYPO3\Opauth\Service\OpauthAccountService
-     * @Flow\Inject
      */
-    protected $opauthAccountService;
+    private $opauthAccountService;
 
     /**
      * @var \TYPO3\Opauth\Opauth\Configuration
-     * @Flow\Inject
      */
-    protected $opauthConfiguration;
+    private $opauthConfiguration;
 
     /**
      * @var bool
      */
     private $authenticateActionAlreadyCalled = FALSE;
+
+    /**
+     * @var array Contains the complete response data from Opauth
+     */
+    protected $opauthResponse = array();
+
+    /**
+     * @param \TYPO3\Opauth\Opauth\Opauth $opauth
+     */
+    public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
+        $this->opauth = $opauth;
+        if($opauth !== NULL && $opauth->getOpauthResponse() !== NULL)
+            $opauth->getOpauthResponse()->getRawData();
+    }
+
+    /**
+     * @param \TYPO3\Opauth\Service\OpauthAccountService $opauthAccountService
+     */
+    public function injectOpauthAccountService(\TYPO3\Opauth\Service\OpauthAccountService $opauthAccountService) {
+        $this->opauthAccountService = $opauthAccountService;
+    }
+
+    /**
+     * @param \TYPO3\Opauth\Opauth\Configuration $opauthConfiguration
+     */
+    public function injectOpauthConfiguration(\TYPO3\Opauth\Opauth\Configuration $opauthConfiguration) {
+        $this->opauthConfiguration = $opauthConfiguration;
+    }
 
     /**
      * Run Opauth to authenticate with the given strategy.
