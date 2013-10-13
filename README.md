@@ -4,8 +4,8 @@ TYPO3.Opauth
 This is a package to use [Opauth](http://opauth.org) with your TYPO3 Flow project.
 
 
-How to implement it
--------------------
+How to use it
+-------------
 
 1. Installation
 
