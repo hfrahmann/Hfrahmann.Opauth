@@ -34,7 +34,6 @@ class Package extends BasePackage {
      * @return void
      */
     protected function loadOpauth() {
-
         // Load Opauth from the Libraries directory
         $opauthPath = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                     . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Libraries' . DIRECTORY_SEPARATOR

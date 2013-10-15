@@ -122,6 +122,20 @@ How to use it
  ```
 
 
+Viewhelper
+----------
+
+There is also a ViewHelper that easily creates a URI for an Opauth strategy.
+
+```
+{namespace opauth=TYPO3\Opauth\ViewHelpers}
+
+{opauth:opauthStrategyUri(strategy:'facebook')}
+```
+
+The output can be look like this: */opauth/facebook*
+
+
 Example
 -------
 
