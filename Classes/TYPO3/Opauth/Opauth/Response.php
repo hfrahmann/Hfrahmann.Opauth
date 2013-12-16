@@ -12,7 +12,7 @@ use TYPO3\Flow\Annotations as Flow;
  * Class OpauthResponse
  * @package TYPO3\Opauth\Opauth
  */
-class OpauthResponse {
+class Response {
 
     /**
      * @var array
