@@ -31,6 +31,8 @@ class Package extends BasePackage {
     }
 
     /**
+     * This method is just a workaround because composer classmaps are not compatible with TYPO3 Flow
+     *
      * @return void
      */
     protected function loadOpauth() {

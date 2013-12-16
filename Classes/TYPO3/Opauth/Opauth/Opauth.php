@@ -31,7 +31,7 @@ class Opauth {
     protected $actionRequest;
 
     /**
-     * @var OpauthResponse
+     * @var Response
      */
     protected $response;
 
@@ -43,32 +43,37 @@ class Opauth {
     }
 
     /**
+     * Returns the real OPAuth object
+     *
      * @return \Opauth
      */
     public function getOpauth() {
         if($this->opauth === NULL) {
             $this->workarounds();
-            $config = $this->configuration->getSettings();
-            $this->opauth = new \Opauth($config, FALSE);
+            $configuration = $this->configuration->getConfiguration();
+            $this->opauth = new \Opauth($configuration, FALSE);
         }
         return $this->opauth;
     }
 
     /**
-     * @return OpauthResponse
+     * Returns an Response object containing the OPAuth data
+     *
+     * @return Response
      */
-    public function getOpauthResponse() {
+    public function getResponse() {
         if($this->actionRequest instanceof \TYPO3\Flow\Mvc\ActionRequest && $this->actionRequest->hasArgument('opauth')) {
             $data = $this->actionRequest->getArgument('opauth');
             $response = unserialize(base64_decode($data));
-            $this->response = new OpauthResponse($response);
+            $this->response = new Response($response);
         }
 
         return $this->response;
     }
 
     /**
-     * Some Workarounds for some strategies
+     * Some Workarounds for some strategies.
+     *
      * @return void
      */
     protected function workarounds() {

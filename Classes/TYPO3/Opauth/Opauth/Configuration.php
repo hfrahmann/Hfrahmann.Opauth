@@ -22,7 +22,7 @@ class Configuration {
     /**
      * @var array
      */
-    protected $settings = array();
+    protected $configuration = array();
 
     /**
      * Construct
@@ -39,38 +39,46 @@ class Configuration {
      * @param array $settings
      */
     public function injectSettings(array $settings) {
-        $this->settings = $this->mergeSettings($settings);
+        $this->configuration = $this->createConfiguration($settings);
     }
 
     /**
+     * Returns the configuration used for the real OPAuth object.
+     *
      * @return array
      */
-    public function getSettings() {
-        return $this->settings;
+    public function getConfiguration() {
+        return $this->configuration;
     }
 
     /**
+     * Returns the default role identifier used for the OPAuth Account.
+     *
      * @return string|array|null
      */
     public function getDefaultRoleIdentifier() {
         $key = 'defaultRoleIdentifier';
-        return isset($this->settings[$key]) ? $this->settings[$key] : NULL;
+        return isset($this->configuration[$key]) ? $this->configuration[$key] : NULL;
     }
 
     /**
+     * Returns the authentication provider name that will do the authentication.
+     *
      * @return string
      */
     public function getAuthenticationProviderName() {
         $key = 'authenticationProviderName';
-        return isset($this->settings[$key]) ? $this->settings[$key] : NULL;
+        return isset($this->configuration[$key]) ? $this->configuration[$key] : NULL;
     }
 
     /**
-     * @param array $settings
+     * Merging the configuration of the Settings.yaml with some default values for OPAuth
+     *
+     * @param array $configuration
      * @return array
      */
-    protected function mergeSettings(array $settings) {
-        $route = $settings['AuthenticationControllerRoute'];
+    protected function createConfiguration(array $configuration) {
+        $route = $configuration['AuthenticationControllerRoute'];
 
         $opauthBasePath = '/' . $this->uriBuilder->uriFor(
             'opauth',
@@ -88,33 +96,35 @@ class Configuration {
             $this->getRoutePart($route, '@subpackage')
         );
 
-        $opauthSettings = array();
+        $opauthConfiguration = array();
 
-        $opauthSettings['defaultRoleIdentifier'] = $settings['defaultRoleIdentifier'];
-        $opauthSettings['authenticationProviderName'] = $settings['authenticationProviderName'];
-
-        // should be created with UriBuilder
-        $opauthSettings['path'] = $opauthBasePath;
+        $opauthConfiguration['defaultRoleIdentifier'] = $configuration['defaultRoleIdentifier'];
+        $opauthConfiguration['authenticationProviderName'] = $configuration['authenticationProviderName'];
 
         // should be created with UriBuilder
-        $opauthSettings['callback_url'] = $opauthCallbackPath;
+        $opauthConfiguration['path'] = $opauthBasePath;
+
+        // should be created with UriBuilder
+        $opauthConfiguration['callback_url'] = $opauthCallbackPath;
 
         // it must be 'post'
-        $opauthSettings['callback_transport'] = 'post';
+        $opauthConfiguration['callback_transport'] = 'post';
 
         // the security salt
-        $opauthSettings['security_salt'] = $settings['security_salt'];
+        $opauthConfiguration['security_salt'] = $configuration['security_salt'];
 
         // the strategy directory
-        $opauthSettings['strategy_dir'] = TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
+        $opauthConfiguration['strategy_dir'] = TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
 
         // import all strategy settings
-        $opauthSettings['Strategy'] = $settings['Strategy'];
+        $opauthConfiguration['Strategy'] = $configuration['Strategy'];
 
-        return $opauthSettings;
+        return $opauthConfiguration;
     }
 
     /**
+     * Returns a part of the route-array
+     *
      * @param array $routeArray
      * @param string $key
      * @return string

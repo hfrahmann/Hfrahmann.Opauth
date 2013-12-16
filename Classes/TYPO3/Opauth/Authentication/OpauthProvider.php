@@ -65,7 +65,7 @@ class OpauthProvider extends \TYPO3\Flow\Security\Authentication\Provider\Abstra
             throw new \TYPO3\Flow\Security\Exception\UnsupportedAuthenticationTokenException('This provider cannot authenticate the given token.', 1381598908);
         }
 
-        $response = $this->opauth->getOpauthResponse();
+        $response = $this->opauth->getResponse();
 
         if($response !== NULL && $response->isAuthenticationSucceeded()) {
             $accountIdentifier = $this->accountService->createAccountIdentifier($response);

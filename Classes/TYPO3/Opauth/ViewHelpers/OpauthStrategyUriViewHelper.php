@@ -11,7 +11,7 @@ use TYPO3\Fluid\Core\ViewHelper;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
- * A view helper for creating URIs to actions.
+ * A view helper for creating URIs for OPAuth-Actions
  *
  * = Examples =
  *
@@ -37,7 +37,7 @@ class OpauthStrategyUriViewHelper extends AbstractViewHelper {
      * @return string
      */
     public function render($strategy = '') {
-        $opauthSettings = $this->opauthConfiguration->getSettings();
+        $opauthSettings = $this->opauthConfiguration->getConfiguration();
 
         $uri = $opauthSettings['path'] . $strategy;
 

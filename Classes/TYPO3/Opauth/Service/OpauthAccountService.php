@@ -33,11 +33,13 @@ class OpauthAccountService {
     protected $configuration;
 
     /**
-     * @param \TYPO3\Opauth\Opauth\OpauthResponse $opauthResponse
+     * Creates an account identifier with the strategy and the unique userID.
+     *
+     * @param \TYPO3\Opauth\Opauth\Response $opauthResponse
      * @return string
      * @throws \TYPO3\Opauth\Exception
      */
-    public function createAccountIdentifier(\TYPO3\Opauth\Opauth\OpauthResponse $opauthResponse) {
+    public function createAccountIdentifier(\TYPO3\Opauth\Opauth\Response $opauthResponse) {
         if($opauthResponse == NULL)
             throw new \TYPO3\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596920);
 
@@ -52,11 +54,14 @@ class OpauthAccountService {
     }
 
     /**
-     * @param \TYPO3\Opauth\Opauth\OpauthResponse $opauthResponse
+     * Return an OPAuth account.
+     * If an account with the given data does not exist a new account will be created.
+     *
+     * @param \TYPO3\Opauth\Opauth\Response $opauthResponse
      * @return \TYPO3\Flow\Security\Account
      * @throws \TYPO3\Opauth\Exception
      */
-    public function getAccount(\TYPO3\Opauth\Opauth\OpauthResponse $opauthResponse) {
+    public function getAccount(\TYPO3\Opauth\Opauth\Response $opauthResponse) {
         if($opauthResponse == NULL)
             throw new \TYPO3\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596921);
 
@@ -80,10 +85,12 @@ class OpauthAccountService {
     }
 
     /**
+     * Checks if the given account is already in the account repository
+     *
      * @param \TYPO3\Flow\Security\Account $account
      * @return bool
      */
-    public function isAccountExisting(\TYPO3\Flow\Security\Account $account) {
+    public function doesAccountExist(\TYPO3\Flow\Security\Account $account) {
         $accountIdentifier = $account->getAccountIdentifier();
         $authenticationProviderName = $account->getAuthenticationProviderName();
 

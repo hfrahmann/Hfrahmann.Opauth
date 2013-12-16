@@ -1,4 +1,6 @@
 
+# This route is necessary.
+
 -
   name: 'Opauth - Strategy-Login'
   uriPattern: 'opauth/{strategy}(/{internalcallback})'

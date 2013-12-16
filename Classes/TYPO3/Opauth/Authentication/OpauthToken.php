@@ -33,8 +33,8 @@ class OpauthToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToke
      */
     public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
         $this->opauth = $opauth;
-        if($opauth !== NULL && $opauth->getOpauthResponse() !== NULL)
-            $this->opauthResponse = $opauth->getOpauthResponse()->getRawData();
+        if($opauth !== NULL && $opauth->getResponse() !== NULL)
+            $this->opauthResponse = $opauth->getResponse()->getRawData();
     }
 
     /**
@@ -56,7 +56,7 @@ class OpauthToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToke
      */
     public function updateCredentials(\TYPO3\Flow\Mvc\ActionRequest $actionRequest) {
         $this->opauth->setActionRequest($actionRequest);
-        $response = $this->opauth->getOpauthResponse();
+        $response = $this->opauth->getResponse();
 
         if($response !== NULL) {
             $this->strategy = $response->getStrategy();

@@ -40,8 +40,8 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      */
     public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
         $this->opauth = $opauth;
-        if($opauth !== NULL && $opauth->getOpauthResponse() !== NULL)
-            $opauth->getOpauthResponse()->getRawData();
+        if($opauth !== NULL && $opauth->getResponse() !== NULL)
+            $opauth->getResponse()->getRawData();
     }
 
     /**
@@ -76,19 +76,19 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      * @return string
      */
     public function authenticateAction() {
-        $opauthResponse = $this->opauth->getOpauthResponse();
+        $opauthResponse = $this->opauth->getResponse();
 
         if($this->authenticateActionAlreadyCalled == FALSE && $opauthResponse !== NULL) {
             $this->authenticateActionAlreadyCalled = TRUE;
             if($opauthResponse->isAuthenticationSucceeded()) {
                 $opauthAccount = $this->opauthAccountService->getAccount($opauthResponse);
-                $doesAccountExists = $this->opauthAccountService->isAccountExisting($opauthAccount);
+                $doesAccountExists = $this->opauthAccountService->doesAccountExist($opauthAccount);
 
                 if($doesAccountExists === FALSE) {
                     return $this->onOpauthAccountDoesNotExist($opauthResponse->getRawData(), $opauthAccount);
                 }
             } else {
-                return $this->onOpauthAuthenticationCanceled();
+                return $this->onOpauthAuthenticationFailed($opauthResponse->getRawData());
             }
         }
 
@@ -107,11 +107,12 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
     abstract public function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount);
 
     /**
-     * This method is called when the authentication was cancelled at the provider.
+     * This method is called when the authentication was cancelled or another problem occurred at the provider.
      *
+     * @param array $opauthResponseData
      * @return void|string
      */
-    abstract public function onOpauthAuthenticationCanceled();
+    abstract public function onOpauthAuthenticationFailed(array $opauthResponseData);
 
 }
 

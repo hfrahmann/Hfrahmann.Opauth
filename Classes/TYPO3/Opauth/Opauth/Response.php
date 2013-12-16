@@ -34,6 +34,8 @@ class Response {
     }
 
     /**
+     * Returns the strategy name.
+     *
      * @return string
      */
     public function getStrategy() {
@@ -43,6 +45,8 @@ class Response {
     }
 
     /**
+     * Returns the unique userID.
+     *
      * @return string
      */
     public function getUserID() {
@@ -52,6 +56,8 @@ class Response {
     }
 
     /**
+     * Return TRUE if the authentication was successful at the provider.
+     *
      * @return bool
      */
     public function isAuthenticationSucceeded() {

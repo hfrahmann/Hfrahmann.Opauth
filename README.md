@@ -18,10 +18,11 @@ How to use it
      }
  ```
 
- DO NOT ADD THE STRATEGIES TO COMPOSER.JSON BECAUSE SOME COMPOSER CONFIGURATION WON'T WORK WITH TYPO3 FLOW.
+ DO NOT ADD STRATEGIES TO THE COMPOSER.JSON BECAUSE SOME COMPOSER CONFIGURATION WON'T WORK WITH TYPO3 FLOW.
 
  You can download any strategy from this list: https://github.com/opauth/opauth/wiki/List-of-strategies
- Then you have to copy the directory to the following path in the **TYPO3.Opauth** package: *Resources/Private/PHP/Strategy/*
+
+ Then you have to copy the extracted directory to the following path in the **TYPO3.Opauth** package: *Resources/Private/PHP/Strategy/*
 
 
 2. Authentication Controller
@@ -44,19 +45,20 @@ How to use it
      abstract public function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount);
 
      /**
-      * This method is called when the authentication was cancelled at the provider.
+      * This method is called when the authentication was cancelled or another problem occurred at the provider.
       *
+      * @param array $opauthResponseData
       * @return void|string
       */
-     abstract public function onOpauthAuthenticationCanceled();
+     abstract public function onOpauthAuthenticationFailed(array $opauthResponseData);
  ```
 
 
 3. Routing
 
- The following route is necessary so that Opauth authentication works.
+ The following route is necessary so that the Opauth authentication works.
  It have to be pointing to your AuthenticationController.
- You can modify the first part at the uriPattern like you want it.
+ You can modify the first part (before /{strategy}...) at the uriPattern like you need it.
  But the last part with the *strategy* and the *internalcallback* is important.
 
  ```yaml
@@ -66,24 +68,24 @@ How to use it
       defaults:
         '@package': 'My.Package'
         '@controller': 'Authentication'
-        '@action': 'opauth' #don't change
+        '@action': 'opauth' # don't change
         '@format': 'html'
-        'internalcallback': '' #important
+        'internalcallback': '' # important
       appendExceedingArguments: true
  ```
 
 
 4. Configuration
 
- This is the configuration for the *Settings.yaml*
- At first there is the AuthenticationProvider pointing to the OpAuthProvider
+ This is the configuration for the *Settings.yaml*.
+ You have configure the AuthenticationProvider pointing to the OPAuthProvider.
 
  In the Opauth part you have to declare the route to your AuthenticationController. (Same data like in the route from step 3)
 
  The *defaultRoleIdentifier* is used as the roleIdentifier for a new account.
 
  For the configuration of the strategies you have to specify them in the *Strategy* area.
- Their are structured like the original Opauth configuration.
+ They are structured like the original Opauth configuration.
 
  ```yaml
     TYPO3:
@@ -176,12 +178,14 @@ class AuthenticationController extends \TYPO3\Opauth\Controller\AbstractAuthenti
     
     $this->authenticateAction(); // authenticate again
   }
-
+  
   /**
-   * This method is called when the authentication was cancelled at the provider.
-   * @return string
+   * This method is called when the authentication was cancelled or another problem occurred at the provider.
+   *
+   * @param array $opauthResponseData
+   * @return void|string
    */
-  public function onOpauthAuthenticationCanceled() {
+  public function onOpauthAuthenticationFailed(array $opauthResponseData) {
     return 'Opauth Authentication Canceled';
   }
 }
