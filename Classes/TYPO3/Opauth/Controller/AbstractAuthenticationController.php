@@ -88,7 +88,7 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
                     return $this->onOpauthAccountDoesNotExist($opauthResponse->getRawData(), $opauthAccount);
                 }
             } else {
-                return $this->onOpauthAuthenticationFailed($opauthResponse->getRawData());
+                return $this->onOpauthAuthenticationFailure($opauthResponse->getRawData());
             }
         }
 
@@ -112,7 +112,7 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      * @param array $opauthResponseData
      * @return void|string
      */
-    abstract public function onOpauthAuthenticationFailed(array $opauthResponseData);
+    abstract public function onOpauthAuthenticationFailure(array $opauthResponseData);
 
 }
 

@@ -50,7 +50,7 @@ How to use it
       * @param array $opauthResponseData
       * @return void|string
       */
-     abstract public function onOpauthAuthenticationFailed(array $opauthResponseData);
+     abstract public function onOpauthAuthenticationFailure(array $opauthResponseData);
  ```
 
 
@@ -178,14 +178,14 @@ class AuthenticationController extends \TYPO3\Opauth\Controller\AbstractAuthenti
     
     $this->authenticateAction(); // authenticate again
   }
-  
+
   /**
    * This method is called when the authentication was cancelled or another problem occurred at the provider.
    *
    * @param array $opauthResponseData
    * @return void|string
    */
-  public function onOpauthAuthenticationFailed(array $opauthResponseData) {
+  public function onOpauthAuthenticationFailure(array $opauthResponseData) {
     return 'Opauth Authentication Canceled';
   }
 }
