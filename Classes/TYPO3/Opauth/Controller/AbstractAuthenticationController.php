@@ -41,7 +41,7 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
     public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
         $this->opauth = $opauth;
         if($opauth !== NULL && $opauth->getResponse() !== NULL)
-            $opauth->getResponse()->getRawData();
+            $this->opauthResponse = $opauth->getResponse()->getRawData();
     }
 
     /**
