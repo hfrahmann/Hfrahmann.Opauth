@@ -114,7 +114,7 @@ class Configuration {
         $opauthConfiguration['security_salt'] = $configuration['securitySalt'];
 
         // the strategy directory
-        $opauthConfiguration['strategy_dir'] = $this->getStrategyDirectory();
+        $opauthConfiguration['strategy_dir'] = $this->getStrategyDirectory($configuration);
 
         // import all strategy settings
         $opauthConfiguration['Strategy'] = $configuration['strategies'];
@@ -138,9 +138,10 @@ class Configuration {
     /**
      * Returns the path of the directory contains the authentication strategies for opauth.
      *
+     * @param array $configuration
      * @return string
      */
-    protected function getStrategyDirectory() {
+    protected function getStrategyDirectory(array $configuration) {
         if(isset($configuration['strategyDirectory'])) {
             $strategyDirectory = $configuration['strategyDirectory'];
             if(substr($strategyDirectory, 1) == '/')
