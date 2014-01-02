@@ -114,7 +114,7 @@ class Configuration {
         $opauthConfiguration['security_salt'] = $configuration['security_salt'];
 
         // the strategy directory
-        $opauthConfiguration['strategy_dir'] = TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
+        $opauthConfiguration['strategy_dir'] = (isset($configuration['strategy_dir'])) ? $configuration['strategy_dir'] : TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
 
         // import all strategy settings
         $opauthConfiguration['Strategy'] = $configuration['Strategy'];
