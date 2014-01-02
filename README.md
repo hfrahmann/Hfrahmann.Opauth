@@ -104,7 +104,7 @@ How to use it
 
         # The route the AuthenticationController.
         # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
-        AuthenticationControllerRoute:
+        authenticationControllerRoute:
           '@package': 'My.Package'
           '@subpackage': ''
           '@controller': 'Authentication'
@@ -116,7 +116,7 @@ How to use it
         # The security_salt must be changed before first use
         security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
 
-        Strategy:
+        strategies:
           Facebook:
             app_id: '571xxxxxxxxxxx'
             app_secret: '3daxxxxxxxxxxxxxxxxxxxxxxxxxxxx'

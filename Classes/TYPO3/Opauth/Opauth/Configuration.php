@@ -78,9 +78,9 @@ class Configuration {
      * @return array
      */
     protected function createConfiguration(array $configuration) {
-        $route = $configuration['AuthenticationControllerRoute'];
+        $route = $configuration['authenticationControllerRoute'];
 
-        $opauthBasePath = '/' . $this->uriBuilder->uriFor(
+        $opauthBasePath = $this->uriBuilder->uriFor(
             'opauth',
             array('strategy' => ''),
             $this->getRoutePart($route, '@controller'),
@@ -88,7 +88,7 @@ class Configuration {
             $this->getRoutePart($route, '@subpackage')
         );
 
-        $opauthCallbackPath = '/' . $this->uriBuilder->uriFor(
+        $opauthCallbackPath = $this->uriBuilder->uriFor(
             'authenticate',
             array(),
             $this->getRoutePart($route, '@controller'),
@@ -111,13 +111,13 @@ class Configuration {
         $opauthConfiguration['callback_transport'] = 'post';
 
         // the security salt
-        $opauthConfiguration['security_salt'] = $configuration['security_salt'];
+        $opauthConfiguration['security_salt'] = $configuration['securitySalt'];
 
         // the strategy directory
         $opauthConfiguration['strategy_dir'] = $this->getStrategyDirectory();
 
         // import all strategy settings
-        $opauthConfiguration['Strategy'] = $configuration['Strategy'];
+        $opauthConfiguration['Strategy'] = $configuration['strategies'];
 
         return $opauthConfiguration;
     }
@@ -141,8 +141,8 @@ class Configuration {
      * @return string
      */
     protected function getStrategyDirectory() {
-        if(isset($configuration['strategy_dir'])) {
-            $strategyDirectory = $configuration['strategy_dir'];
+        if(isset($configuration['strategyDirectory'])) {
+            $strategyDirectory = $configuration['strategyDirectory'];
             if(substr($strategyDirectory, 1) == '/')
                 return $strategyDirectory;
             else
