@@ -114,7 +114,7 @@ class Configuration {
         $opauthConfiguration['security_salt'] = $configuration['security_salt'];
 
         // the strategy directory
-        $opauthConfiguration['strategy_dir'] = (isset($configuration['strategy_dir'])) ? $configuration['strategy_dir'] : TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
+        $opauthConfiguration['strategy_dir'] = $this->getStrategyDirectory();
 
         // import all strategy settings
         $opauthConfiguration['Strategy'] = $configuration['Strategy'];
@@ -133,6 +133,22 @@ class Configuration {
         if(array_key_exists($key, $routeArray) && strlen($routeArray[$key]) > 0)
             return $routeArray[$key];
         return NULL;
+    }
+
+    /**
+     * Returns the path of the directory contains the authentication strategies for opauth.
+     *
+     * @return string
+     */
+    protected function getStrategyDirectory() {
+        if(isset($configuration['strategy_dir'])) {
+            $strategyDirectory = $configuration['strategy_dir'];
+            if(substr($strategyDirectory, 1) == '/')
+                return $strategyDirectory;
+            else
+                return FLOW_PATH_ROOT . $strategyDirectory;
+        }
+        return TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
     }
 
 }
