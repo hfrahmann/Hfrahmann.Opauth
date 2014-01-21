@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\Controller;
+namespace Hfrahmann\Opauth\Controller;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -11,17 +11,17 @@ use TYPO3\Flow\Annotations as Flow;
 abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController {
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Opauth
+     * @var \Hfrahmann\Opauth\Opauth\Opauth
      */
     private $opauth;
 
     /**
-     * @var \TYPO3\Opauth\Service\OpauthAccountService
+     * @var \Hfrahmann\Opauth\Service\OpauthAccountService
      */
     private $opauthAccountService;
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Configuration
+     * @var \Hfrahmann\Opauth\Opauth\Configuration
      */
     private $opauthConfiguration;
 
@@ -36,25 +36,25 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
     protected $opauthResponse = array();
 
     /**
-     * @param \TYPO3\Opauth\Opauth\Opauth $opauth
+     * @param \Hfrahmann\Opauth\Opauth\Opauth $opauth
      */
-    public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
+    public function injectOpauth(\Hfrahmann\Opauth\Opauth\Opauth $opauth) {
         $this->opauth = $opauth;
         if($opauth !== NULL && $opauth->getResponse() !== NULL)
             $this->opauthResponse = $opauth->getResponse()->getRawData();
     }
 
     /**
-     * @param \TYPO3\Opauth\Service\OpauthAccountService $opauthAccountService
+     * @param \Hfrahmann\Opauth\Service\OpauthAccountService $opauthAccountService
      */
-    public function injectOpauthAccountService(\TYPO3\Opauth\Service\OpauthAccountService $opauthAccountService) {
+    public function injectOpauthAccountService(\Hfrahmann\Opauth\Service\OpauthAccountService $opauthAccountService) {
         $this->opauthAccountService = $opauthAccountService;
     }
 
     /**
-     * @param \TYPO3\Opauth\Opauth\Configuration $opauthConfiguration
+     * @param \Hfrahmann\Opauth\Opauth\Configuration $opauthConfiguration
      */
-    public function injectOpauthConfiguration(\TYPO3\Opauth\Opauth\Configuration $opauthConfiguration) {
+    public function injectOpauthConfiguration(\Hfrahmann\Opauth\Opauth\Configuration $opauthConfiguration) {
         $this->opauthConfiguration = $opauthConfiguration;
     }
 

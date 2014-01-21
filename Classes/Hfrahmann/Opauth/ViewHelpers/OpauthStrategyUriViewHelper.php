@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\ViewHelpers;
+namespace Hfrahmann\Opauth\ViewHelpers;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -16,7 +16,7 @@ use TYPO3\Flow\Annotations as Flow;
  * = Examples =
  *
  * <code title="Defaults">
- * {namespace opauth=TYPO3\Opauth\ViewHelpers}
+ * {namespace opauth=Hfrahmann\Opauth\ViewHelpers}
  *
  * {opauth:opauthStrategyUri(strategy:'facebook')}
  * </code>
@@ -27,7 +27,7 @@ use TYPO3\Flow\Annotations as Flow;
 class OpauthStrategyUriViewHelper extends AbstractViewHelper {
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Configuration
+     * @var \Hfrahmann\Opauth\Opauth\Configuration
      * @Flow\Inject
      */
     protected $opauthConfiguration;

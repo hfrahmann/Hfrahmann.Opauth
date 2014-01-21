@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\Opauth;
+namespace Hfrahmann\Opauth\Opauth;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -10,7 +10,6 @@ use TYPO3\Flow\Annotations as Flow;
 
 /**
  * Class OpauthResponse
- * @package TYPO3\Opauth\Opauth
  */
 class Response {
 

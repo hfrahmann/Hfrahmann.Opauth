@@ -1,4 +1,4 @@
-TYPO3.Opauth
+Hfrahmann.Opauth
 ============
 
 This is a package to use [Opauth](http://opauth.org) with your TYPO3 Flow project.
@@ -13,7 +13,7 @@ How to use it
  ```json
      {
          "require":{
-             "typo3/opauth": "@dev"
+             "hfrahmann/opauth": "@dev"
          }
      }
  ```
@@ -22,13 +22,13 @@ How to use it
 
  You can download any strategy from this list: https://github.com/opauth/opauth/wiki/List-of-strategies
 
- Then you have to copy the extracted directory to the following path in the **TYPO3.Opauth** package: *Resources/Private/PHP/Strategy/*
+ Then you have to copy the extracted directory to the following path in the **Hfrahmann.Opauth** package: *Resources/Private/PHP/Strategy/*
 
 
 2. Authentication Controller
 
  At first you need an AuthenticationController.
- The *\TYPO3\Opauth\AbstractAuthenticationController* extends the original AbstractAuthenticationController from TYPO3 Flow.
+ The *\Hfrahmann\Opauth\AbstractAuthenticationController* extends the original AbstractAuthenticationController from TYPO3 Flow.
 
  When you extends the Opauth AbstractAuthenticationController you have to add the following methods to your AuthenticationController.
 
@@ -97,13 +97,15 @@ How to use it
             providers:
 
               OpauthProvider:
-                provider: 'TYPO3\Opauth\Authentication\OpauthProvider'
+                provider: 'Hfrahmann\Opauth\Authentication\OpauthProvider'
 
+
+    Hfrahmann:
 
       Opauth:
 
         # The route the AuthenticationController.
-        # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
+        # Must extends the \Hfrahmann\Opauth\AbstractAuthenticationController.
         authenticationControllerRoute:
           '@package': 'My.Package'
           '@subpackage': ''
@@ -130,7 +132,7 @@ Viewhelper
 There is also a ViewHelper that easily creates a URI for an Opauth strategy.
 
 ```
-{namespace opauth=TYPO3\Opauth\ViewHelpers}
+{namespace opauth=Hfrahmann\Opauth\ViewHelpers}
 
 {opauth:opauthStrategyUri(strategy:'facebook')}
 ```
@@ -145,7 +147,7 @@ Here is an example of an AuthenticationController.
 
 ```php
 //...
-class AuthenticationController extends \TYPO3\Opauth\Controller\AbstractAuthenticationController {
+class AuthenticationController extends \Hfrahmann\Opauth\Controller\AbstractAuthenticationController {
   /**
    * @var \TYPO3\Flow\Security\AccountRepository
    * @Flow\Inject

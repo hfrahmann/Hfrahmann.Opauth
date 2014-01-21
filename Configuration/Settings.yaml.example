@@ -8,13 +8,14 @@ TYPO3:
         providers:
 
           OpauthProvider:
-            provider: 'TYPO3\Opauth\Authentication\OpauthProvider'
+            provider: 'Hfrahmann\Opauth\Authentication\OpauthProvider'
 
+Hfrahmann:
 
   Opauth:
 
     # The route the AuthenticationController.
-    # Must extends the \TYPO3\Opauth\AbstractAuthenticationController.
+    # Must extends the \Hfrahmann\Opauth\AbstractAuthenticationController.
     authenticationControllerRoute:
       '@package': 'My.Package'
       '@subpackage': ''

@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\Authentication;
+namespace Hfrahmann\Opauth\Authentication;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -19,7 +19,7 @@ class OpauthToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToke
     protected $strategy = '';
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Opauth
+     * @var \Hfrahmann\Opauth\Opauth\Opauth
      */
     protected $opauth;
 
@@ -29,9 +29,9 @@ class OpauthToken extends \TYPO3\Flow\Security\Authentication\Token\AbstractToke
     protected $opauthResponse;
 
     /**
-     * @param \TYPO3\Opauth\Opauth\Opauth $opauth
+     * @param \Hfrahmann\Opauth\Opauth\Opauth $opauth
      */
-    public function injectOpauth(\TYPO3\Opauth\Opauth\Opauth $opauth) {
+    public function injectOpauth(\Hfrahmann\Opauth\Opauth\Opauth $opauth) {
         $this->opauth = $opauth;
         if($opauth !== NULL && $opauth->getResponse() !== NULL)
             $this->opauthResponse = $opauth->getResponse()->getRawData();

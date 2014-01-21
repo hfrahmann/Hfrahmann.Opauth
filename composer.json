@@ -1,9 +1,9 @@
 {
-    "name": "typo3/opauth",
+    "name": "hfrahmann/opauth",
     "type": "typo3-flow-package",
     "description":"This is a package to use Opauth with your TYPO3 Flow project.",
     "keywords": ["opauth", "login", "authentication", "facebook", "twitter", "google", "typo3", "flow", "typo3flow"],
-    "homepage": "https://github.com/hfrahmann/TYPO3.Opauth",
+    "homepage": "https://github.com/hfrahmann/Hfrahmann.Opauth",
     "version": "1.0",
     "license": "MIT",
     "authors":[{
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "TYPO3\\Opauth": "Classes"
+            "Hfrahmann\\Opauth": "Classes"
         }
     }
 }

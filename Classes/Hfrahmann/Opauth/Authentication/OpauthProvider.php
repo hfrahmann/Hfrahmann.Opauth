@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\Authentication;
+namespace Hfrahmann\Opauth\Authentication;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -10,7 +10,7 @@ use TYPO3\Flow\Annotations as Flow;
 
 /**
  * Class OpauthProvider
- * @package TYPO3\Opauth
+ * @package Hfrahmann\Opauth
  */
 class OpauthProvider extends \TYPO3\Flow\Security\Authentication\Provider\AbstractProvider {
 
@@ -27,19 +27,19 @@ class OpauthProvider extends \TYPO3\Flow\Security\Authentication\Provider\Abstra
     protected $accountRepository;
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Opauth
+     * @var \Hfrahmann\Opauth\Opauth\Opauth
      * @Flow\Inject
      */
     protected $opauth;
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Configuration
+     * @var \Hfrahmann\Opauth\Opauth\Configuration
      * @Flow\Inject
      */
     protected $configuration;
 
     /**
-     * @var \TYPO3\Opauth\Service\OpauthAccountService
+     * @var \Hfrahmann\Opauth\Service\OpauthAccountService
      * @Flow\Inject
      */
     protected $accountService;
@@ -50,7 +50,7 @@ class OpauthProvider extends \TYPO3\Flow\Security\Authentication\Provider\Abstra
      * @return array The classname of the token this provider is responsible for
      */
     public function getTokenClassNames() {
-        return array('TYPO3\Opauth\Authentication\OpauthToken');
+        return array('Hfrahmann\Opauth\Authentication\OpauthToken');
     }
 
     /**

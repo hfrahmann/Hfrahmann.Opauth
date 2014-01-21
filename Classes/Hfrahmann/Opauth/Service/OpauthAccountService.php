@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Opauth\Service;
+namespace Hfrahmann\Opauth\Service;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "TYPO3.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
  *                                                                        *
  *                                                                        */
 
@@ -27,7 +27,7 @@ class OpauthAccountService {
     protected $accountRepository;
 
     /**
-     * @var \TYPO3\Opauth\Opauth\Configuration
+     * @var \Hfrahmann\Opauth\Opauth\Configuration
      * @Flow\Inject
      */
     protected $configuration;
@@ -35,13 +35,13 @@ class OpauthAccountService {
     /**
      * Creates an account identifier with the strategy and the unique userID.
      *
-     * @param \TYPO3\Opauth\Opauth\Response $opauthResponse
+     * @param \Hfrahmann\Opauth\Opauth\Response $opauthResponse
      * @return string
-     * @throws \TYPO3\Opauth\Exception
+     * @throws \Hfrahmann\Opauth\Exception
      */
-    public function createAccountIdentifier(\TYPO3\Opauth\Opauth\Response $opauthResponse) {
+    public function createAccountIdentifier(\Hfrahmann\Opauth\Opauth\Response $opauthResponse) {
         if($opauthResponse == NULL)
-            throw new \TYPO3\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596920);
+            throw new \Hfrahmann\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596920);
 
         $strategy = $opauthResponse->getStrategy();
         $userID = $opauthResponse->getUserID();
@@ -49,7 +49,7 @@ class OpauthAccountService {
         if(strlen($strategy) > 0 && strlen($userID) > 0) {
             return $strategy . ':' . $userID;
         } else {
-            throw new \TYPO3\Opauth\Exception("No Strategy or UserID given.", 1381596915);
+            throw new \Hfrahmann\Opauth\Exception("No Strategy or UserID given.", 1381596915);
         }
     }
 
@@ -57,13 +57,13 @@ class OpauthAccountService {
      * Return an OPAuth account.
      * If an account with the given data does not exist a new account will be created.
      *
-     * @param \TYPO3\Opauth\Opauth\Response $opauthResponse
+     * @param \Hfrahmann\Opauth\Opauth\Response $opauthResponse
      * @return \TYPO3\Flow\Security\Account
-     * @throws \TYPO3\Opauth\Exception
+     * @throws \Hfrahmann\Opauth\Exception
      */
-    public function getAccount(\TYPO3\Opauth\Opauth\Response $opauthResponse) {
+    public function getAccount(\Hfrahmann\Opauth\Opauth\Response $opauthResponse) {
         if($opauthResponse == NULL)
-            throw new \TYPO3\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596921);
+            throw new \Hfrahmann\Opauth\Exception("OpauthResponse cannot be NULL.", 1381596921);
 
         $accountIdentifier = $this->createAccountIdentifier($opauthResponse);
         $authenticationProviderName = $this->configuration->getAuthenticationProviderName();
