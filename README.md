@@ -13,7 +13,7 @@ How to use it
  ```json
      {
          "require":{
-             "hfrahmann/opauth": "@dev"
+             "hfrahmann/opauth": "1.1"
          }
      }
  ```
