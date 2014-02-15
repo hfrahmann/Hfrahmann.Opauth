@@ -117,8 +117,7 @@ How to use it
         security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
         
         # The absolute path (beginning with /) or the relative path to the flow directory.
-        # It will only be used when the strategy could not be autoloaded.
-        strategyDirectory: 'OpathStrategies/'
+        strategyDirectory: 'OpathStrategies/' #optional
         
         strategies:
           Facebook:

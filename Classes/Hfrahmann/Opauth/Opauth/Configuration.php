@@ -142,14 +142,16 @@ class Configuration {
      * @return string
      */
     protected function getStrategyDirectory(array $configuration) {
-        if(isset($configuration['strategyDirectory'])) {
+        if(isset($configuration['strategyDirectory']) && strlen($configuration['strategyDirectory']) > 0) {
             $strategyDirectory = $configuration['strategyDirectory'];
             if(substr($strategyDirectory, 1) == '/')
                 return $strategyDirectory;
             else
                 return FLOW_PATH_ROOT . $strategyDirectory;
         }
-        return TYPO3OPAUTH_RESOURCES_PHP_PATH . 'Strategy' . DIRECTORY_SEPARATOR;
+
+        // composer Libraries path
+        return FLOW_PATH_PACKAGES . 'Libraries' . DIRECTORY_SEPARATOR . 'opauth';
     }
 
 }
