@@ -18,12 +18,9 @@ How to use it
      }
  ```
 
- DO NOT ADD STRATEGIES TO THE COMPOSER.JSON BECAUSE SOME COMPOSER CONFIGURATION WON'T WORK WITH TYPO3 FLOW.
-
  You can download any strategy from this list: https://github.com/opauth/opauth/wiki/List-of-strategies
 
- Then you have to copy the extracted directory to the following path in the **Hfrahmann.Opauth** package: *Resources/Private/PHP/Strategy/*.
- Or you can copy them to another folder and configure the path in the *settings.yaml*.
+ Then you have to copy the extracted directory to a folder of your choice and configure the path in the *settings.yaml*.
 
 
 2. Authentication Controller
@@ -119,8 +116,9 @@ How to use it
         # The security_salt must be changed before first use
         security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
         
-        # absolute path or relative the flow-root-path
-        strategyDirectory: 'OpathStrategies/' # optional
+        # The absolute path (beginning with /) or the relative path to the flow directory.
+        # It will only be used when the strategy could not be autoloaded.
+        strategyDirectory: 'OpathStrategies/'
         
         strategies:
           Facebook:
