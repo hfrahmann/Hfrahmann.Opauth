@@ -113,9 +113,6 @@ class Configuration {
         // the security salt
         $opauthConfiguration['security_salt'] = $configuration['securitySalt'];
 
-        // the strategy directory
-        $opauthConfiguration['strategy_dir'] = $this->getStrategyDirectory($configuration);
-
         // import all strategy settings
         $opauthConfiguration['Strategy'] = $configuration['strategies'];
 
