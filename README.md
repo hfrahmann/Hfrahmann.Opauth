@@ -116,9 +116,6 @@ How to use it
         # The security_salt must be changed before first use
         security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
         
-        # The absolute path (beginning with /) or the relative path to the flow directory.
-        strategyDirectory: 'OpathStrategies/' #optional
-        
         strategies:
           Facebook:
             app_id: '571xxxxxxxxxxx'
