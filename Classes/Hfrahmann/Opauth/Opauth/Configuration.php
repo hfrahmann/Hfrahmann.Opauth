@@ -2,7 +2,7 @@
 namespace Hfrahmann\Opauth\Opauth;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".          *
+ * This script belongs to the TYPO3 Flow package "Hfrahmann.Opauth".      *
  *                                                                        *
  *                                                                        */
 
@@ -29,7 +29,7 @@ class Configuration {
      */
     public function __construct() {
         $httpRequest = \TYPO3\Flow\Http\Request::createFromEnvironment();
-        $actionRequest = $httpRequest->createActionRequest();
+        $actionRequest = new \TYPO3\Flow\Mvc\ActionRequest($httpRequest);
 
         $this->uriBuilder = new \TYPO3\Flow\Mvc\Routing\UriBuilder();
         $this->uriBuilder->setRequest($actionRequest);
