@@ -104,7 +104,7 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      * @param \TYPO3\Flow\Security\Account $opauthAccount A pre-generated account with the Opauth data
      * @return void|string
      */
-    abstract public function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount);
+    abstract protected function onOpauthAccountDoesNotExist(array $opauthResponseData, \TYPO3\Flow\Security\Account $opauthAccount);
 
     /**
      * This method is called when the authentication was cancelled or another problem occurred at the provider.
@@ -112,7 +112,7 @@ abstract class AbstractAuthenticationController extends \TYPO3\Flow\Security\Aut
      * @param array $opauthResponseData
      * @return void|string
      */
-    abstract public function onOpauthAuthenticationFailure(array $opauthResponseData);
+    abstract protected function onOpauthAuthenticationFailure(array $opauthResponseData);
 
 }
 
