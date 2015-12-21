@@ -114,7 +114,7 @@ How to use it
         authenticationProviderName: 'OpauthProvider' #the provider name from top
 
         # The security_salt must be changed before first use
-        security_salt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
+        securitySalt: 'LDFmiilYf8Fyw5W10rx4W1KsVrieQCnpBzzpTBWA5vJidQKDx8pMJbmw28R1C4m'
         
         strategies:
           Facebook:
