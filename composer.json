@@ -11,7 +11,7 @@
         "role": "Developer"
     }],
     "require": {
-        "typo3/flow": "*",
+        "neos/flow": "*",
         "opauth/opauth": "@dev"
     },
     "autoload": {
